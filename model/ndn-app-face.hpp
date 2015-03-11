@@ -69,6 +69,18 @@ public: // from nfd::Face
   virtual void
   sendData(const Data& data);
 
+  /**
+   * @brief Send Interest towards NFD
+   */
+  void
+  onReceiveInterest(const Interest& interest);
+
+  /**
+   * @brief Send Data towards NFD
+   */
+  void
+  onReceiveData(const Data& data);
+
   virtual void
   close();
 

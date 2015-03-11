@@ -6,7 +6,7 @@ from waflib.Errors import WafError
 
 import wutils
 
-REQUIRED_BOOST_LIBS = ['graph']
+REQUIRED_BOOST_LIBS = ['graph', 'random', 'thread', 'system']
 
 def required_boost_libs(conf):
     conf.env.REQUIRED_BOOST_LIBS += REQUIRED_BOOST_LIBS
@@ -81,7 +81,7 @@ def build(bld):
     module = bld.create_ns3_module ('ndnSIM', deps)
     module.module = 'ndnSIM'
     module.features += ' ns3fullmoduleheaders'
-    module.use += ['NDN_CXX', 'BOOST']
+    module.use += ['NDN_CXX', 'BOOST', 'NFD']
     module.includes = [".", "./NFD", "./NFD/daemon", "./NFD/core"]
     module.export_includes = [".", "./NFD", "./NFD/daemon", "./NFD/core"]
 
@@ -96,7 +96,26 @@ def build(bld):
     module_dirs = ['NFD', 'apps', 'helper', 'model', 'utils']
 
     module.source = bld.path.ant_glob(['%s/**/*.cpp' % dir for dir in module_dirs],
-                                      excl=['model/ip-faces/*'])
+                                      excl=['model/ip-faces/*',
+                                            'NFD/w*',
+                                            'NFD/contrib',
+                                            'NFD/nfd.conf.sample.in',
+                                            'NFD/rib',
+                                            'NFD/t*',
+                                            'NFD/unit-tests.conf.sample',
+                                            'NFD/version.hpp.in',
+                                            'NFD/core/global-io.*',
+                                            'NFD/core/logger-factory.*',
+                                            'NFD/core/logger.cpp',
+                                            'NFD/core/network-interface.*',
+                                            'NFD/daemon/main.cpp',
+                                            'NFD/daemon/nfd.*',
+                                            'NFD/daemon/face/e*',
+                                            'NFD/daemon/face/m*',
+                                            'NFD/daemon/face/t*',
+                                            'NFD/daemon/face/u*',
+                                            'NFD/daemon/face/s*',
+                                            'NFD/daemon/face/w*'])
 
     module.full_headers = [p.path_from(bld.path) for p in bld.path.ant_glob(
         ['%s/**/*.hpp' % dir for dir in module_dirs])]

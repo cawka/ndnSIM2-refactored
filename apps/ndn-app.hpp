@@ -97,7 +97,7 @@ protected:
 protected:
   bool m_active; ///< @brief Flag to indicate that application is active (set by StartApplication
   /// and StopApplication)
-  shared_ptr<Face>
+  shared_ptr<AppFace>
     m_face; ///< @brief automatically created application face through which application
   /// communicates
 

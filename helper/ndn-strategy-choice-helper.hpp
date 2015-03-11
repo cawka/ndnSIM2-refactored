@@ -28,7 +28,8 @@
 
 #include "ns3/ndnSIM/model/ndn-l3-protocol.hpp"
 #include "ns3/ndnSIM/NFD/daemon/mgmt/strategy-choice-manager.hpp"
-#include "ns3/ndnSIM/NFD/daemon/fw/available-strategies.hpp"
+#include "ns3/ndnSIM/NFD/daemon/fw/strategy-registry.hpp"
+#include "ns3/ndnSIM/NFD/daemon/fw/forwarder.hpp"
 
 namespace ndn {
 namespace nfd {

@@ -34,6 +34,7 @@
 #include <ndn-cxx/security/key-chain.hpp>
 
 #include <ndn-cxx/util/time.hpp>
+#include <ndn-cxx/util/signal-signal.hpp>
 
 namespace nfd {
 }
@@ -62,6 +63,7 @@ using ::ndn::Signature;
 using ::ndn::SignatureInfo;
 using ::ndn::Block;
 using ::ndn::KeyChain;
+using ::ndn::util::Signal;
 
 namespace nfd = ::nfd;
 

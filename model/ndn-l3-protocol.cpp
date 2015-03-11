@@ -320,15 +320,15 @@ L3Protocol::addFace(shared_ptr<Face> face)
   m_impl->m_forwarder->addFace(face);
 
   // Connect Signals to TraceSource
-  face->onReceiveInterest +=
-    [this, face](const Interest& interest) { this->m_inInterests(interest, *face); };
+  face->onReceiveInterest.connect
+    ([this, face](const Interest& interest) { this->m_inInterests(interest, *face); });
 
-  face->onSendInterest +=
-    [this, face](const Interest& interest) { this->m_outInterests(interest, *face); };
+  face->onSendInterest.connect
+    ([this, face](const Interest& interest) { this->m_outInterests(interest, *face); });
 
-  face->onReceiveData += [this, face](const Data& data) { this->m_inData(data, *face); };
+  face->onReceiveData.connect([this, face](const Data& data) { this->m_inData(data, *face); });
 
-  face->onSendData += [this, face](const Data& data) { this->m_outData(data, *face); };
+     face->onSendData.connect([this, face](const Data& data) { this->m_outData(data, *face); });
 
   return face->getId();
 }
